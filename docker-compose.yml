@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  postgres-prod:
+    container_name: postgres-prod
+    image: postgres-prod
+    build: ./postgres-prod
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    restart: always
+
