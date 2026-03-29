@@ -10,3 +10,6 @@ volumes/
 tmp/
 .DS_Store
 .idea
+
+# Docs (optional)
+README.md

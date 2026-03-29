@@ -10,7 +10,7 @@ This repository contains:
   - **Persistent Data Storage**: Configures a volume:
     - `./volumes/data:/var/lib/postgresql/data` for preserving the PostgreSQL database files across container restarts.
 
-  - **Pre-configured Environment Variables**: Sets up the initial PostgreSQL database with default credentials, ensuring a ready-to-use database upon startup.
+  - **Environment Variables**: An `.env.example` file is provided with default credentials. Copy it to `.env` before starting the container — this file is used by `docker-compose.yml` to configure the initial PostgreSQL database.
 
 - **Dockerfile**: Defines the custom build process for the `postgres-prod` Docker image. This includes the base PostgreSQL image and the PostGIS extension. You may add additional extensions or configurations by modifying the Dockerfile as necessary.
 
@@ -25,18 +25,24 @@ This repository contains:
    cd docker-postgres
    ```
 
-2. **Build and Start the PostgreSQL Service**:
+2. **Configure Environment Variables**:
+   Copy the example environment file and edit it with your desired credentials:
+   ```bash
+   cp .env.example .env
+   ```
+   The `.env` file defines:
+   - `POSTGRES_DB` — database name
+   - `POSTGRES_USER` — superuser username
+   - `POSTGRES_PASSWORD` — superuser password
+
+   Be sure to change the default credentials before deploying to any non-local environment.
+
+3. **Build and Start the PostgreSQL Service**:
    Execute the following command to build the PostgreSQL with PostGIS image and start the container:
    ```bash
-   docker compose up -d --build 
+   docker compose up -d --build
    ```
 
-3. **Accessing the PostgreSQL Server**:
-   Connect to your PostgreSQL database server using any PostgreSQL client with the following default credentials:
-
-   - **Database**: postgres
-   - **Username**: postgres
-   - **Password**: postgres
-
-   Be sure to change the default credentials during your first setup for better security.
+4. **Accessing the PostgreSQL Server**:
+   Connect to your PostgreSQL database server using any PostgreSQL client with the credentials defined in your `.env` file.
 
